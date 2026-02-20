@@ -1,3 +1,7 @@
+/**
+ * This is the ClientReady event file, where once the bot is ready essentially it loads its commands registered from the main index.mjs file. After which, it updates its status every x (changeInterval) seconds.
+ * @since February 20th, 2026
+ */
 import { Events, ActivityType, PresenceUpdateStatus, REST, Routes, CommandInteraction, Client } from 'discord.js';
 
 let changeInterval = 3;

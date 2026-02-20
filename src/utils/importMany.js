@@ -1,12 +1,16 @@
+/**
+ * Useful utility module that imports multiple JavaScript *or* TypeScript files at the same time inside of a directory path. 
+ * @since February 20th, 2026
+ */
 import { readdirSync, statSync } from 'fs';
 import { join, extname } from 'path';
 import { pathToFileURL } from 'url';
 
 /**
  * 
- * @param {*} dir - the path to retrieve the modules from. 
- * @param {*} callback 
- * @returns The 
+ * @param {*} dir - the path to retrieve the modules. 
+ * @param {*} callback - a function dictating what should happen with each individual file.
+ * @returns the files
  */
 export async function importMany(
 	dir,

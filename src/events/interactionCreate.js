@@ -1,3 +1,7 @@
+/**
+ * Command execution through application (slash - /) commands. 
+ * @since February 20th, 2026
+ */
 import { Events, CommandInteraction, MessageFlags } from 'discord.js';
 
 export default {
