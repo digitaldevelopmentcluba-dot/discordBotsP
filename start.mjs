@@ -12,7 +12,9 @@ app.use(json()); // Allows for viewing JSON-based bodies in POST, PATCH, or DELE
 app.use(urlencoded({extended: false})); // Allows for viewing URL-based bodies in POST, PATCH, or DELETE requests
 
 // Retrieves the bot's sharding manager and then attemps to spawn a few shards
-const { manager, router } = await import('./src/sharding.mjs'); 
+const shardManager = await import('./src/sharding.mjs'); 
+const {manager, router} = shardManager.default;
+
 try {
   await manager.spawn(); // Spawns shards according to how many Discord servers the bot is in
   app.use(router); // Uses the bot's custom routing endpoints 
