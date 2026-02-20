@@ -20,7 +20,6 @@ export function createRouter(manager) {
       totalShards: manager.totalShards,
       shardIds: manager.shards.map(shard => shard.id),
       uptime: globalUptimeMs,
-      avatar: botAvatar,
     });
   });
 
