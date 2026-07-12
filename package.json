@@ -26,7 +26,7 @@
   "imports": {
     "#src/*": "./source/*",
     "#util/*": "./source/util/*",
-    "#test/*": "./source/test/*",
+    "#tests/*": "./source/tests/*",
     "#events/*": "./source/events/*",
     "#commands/*": "./source/commands/*"
   },
