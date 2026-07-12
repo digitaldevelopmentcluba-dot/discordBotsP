@@ -28,7 +28,8 @@
     "#util/*": "./source/util/*",
     "#tests/*": "./source/tests/*",
     "#events/*": "./source/events/*",
-    "#commands/*": "./source/commands/*"
+    "#commands/*": "./source/commands/*",
+    "#assets/*": "./source/assets/*"
   },
   "dependencies": {
     "discord.js": "^14.26.5",
