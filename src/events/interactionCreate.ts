@@ -1,9 +1,14 @@
 import { Events, CommandInteraction, MessageFlags, type Interaction } from 'discord.js';
 import {commandBuilder} from '#utils/commandBuilder.js'
+import { buttonBuilder } from '#utils/components.js';
 
 export default {
     event: Events.InteractionCreate,
     async execute(interaction : Interaction, ...args : any) {
+        if (interaction.isButton()) {
+            return buttonBuilder.handle(interaction);
+        }
+
         if (interaction.isChatInputCommand()) {
             const command = interaction.client.commands.get(interaction.commandName);
             if (!command) {
