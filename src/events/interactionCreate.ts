@@ -1,10 +1,14 @@
 import { Events, CommandInteraction, MessageFlags, type Interaction } from 'discord.js';
 import {commandBuilder} from '#utils/commandBuilder.js'
-import { buttonBuilder } from '#utils/components.js';
+import { buttonBuilder, modalBuilder } from '#utils/components.js';
 
 export default {
     event: Events.InteractionCreate,
     async execute(interaction : Interaction, ...args : any) {
+        if (interaction.isModalSubmit()) {
+            return modalBuilder.handle(interaction);
+        }
+        
         if (interaction.isButton()) {
             return buttonBuilder.handle(interaction);
         }

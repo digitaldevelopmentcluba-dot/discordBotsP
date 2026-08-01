@@ -9,7 +9,11 @@
     "start": "node dist/launch.js",
     "clean": "rimraf dist"
   },
-  "keywords": ["Discord", "bot", "template"],
+  "keywords": [
+    "Discord",
+    "bot",
+    "template"
+  ],
   "author": "Breezist",
   "license": "ISC",
   "type": "module",
@@ -23,7 +27,8 @@
   "dependencies": {
     "discord.js": "^14.26.5",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongodb": "^7.5.0"
   },
   "imports": {
     "#src/*": "./dist/*",

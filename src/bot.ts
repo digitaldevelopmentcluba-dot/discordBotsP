@@ -6,6 +6,7 @@ import {
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { dataStore, dataStoreService } from "#utils/database.js";
 
 const token = process.env.token;
 
@@ -17,6 +18,15 @@ declare module "discord.js" {
         commands: Collection<string, any>;
     }
 }
+
+declare global {
+    var datastoreService: dataStoreService;
+    var datastore: dataStore;
+}
+
+const datastoreService = global.datastoreService = new dataStoreService(process.env.mongo ? process.env.mongo : ``, `ddc`);
+await datastoreService.connect();
+const datastore = global.datastore = datastoreService.getDataStore(`main`);
 
 const client : Client = new Client({
     intents: [
