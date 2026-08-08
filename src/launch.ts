@@ -16,14 +16,14 @@ import expressLayouts from 'express-ejs-layouts';
 
 const app = express();
 app.set(`view engine`, `ejs`);
-app.set(`views`, path.join(process.cwd(), `src`, `views`));
+app.set(`views`, path.join(process.cwd(), `src`, `web`, `views`));
 
 app.use(expressLayouts);
 app.set(`layout`, `layouts/main`);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
-app.use(express.static(path.join(process.cwd(), `src`, `views`, 'public')));
+app.use(express.static(path.join(process.cwd(), `src`, `web`, 'public')));
 
 let manager = new shardManager(path.join(__dirname, `./bot.js`), process.env.token);
 await manager.init();
