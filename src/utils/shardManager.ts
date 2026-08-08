@@ -17,10 +17,14 @@ export default class shardManager extends EventEmitter {
             ]
         });
         let router = this.web = Router();
-        router.get("/", (req, res) => {
-		res.send("Hello hi yes funny website landing page oh no this is temporary")
-	})
+        let start = new Date();
 
+        router.get(`/`, (req, res) => {
+            res.render(`index`, { 
+                title: `Home Page`,
+                elapsed: (new Date() as any) - (start as any),
+            });
+        });
 
         manager.on(`shardCreate`, (shard) => {
             this.#shards.push(shard);

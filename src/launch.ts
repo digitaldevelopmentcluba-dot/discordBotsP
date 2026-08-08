@@ -8,15 +8,21 @@ const __dirname = path.dirname(__filename);
 import dotenv from 'dotenv';
 dotenv.config({path: path.join(__dirname, `../config/.env`)});
 
-let utils = pathToFileURL(path.join(__dirname, '/utils/index.js')).href;
+let utils = pathToFileURL(path.join(__dirname, `/utils/index.js`)).href;
 let { shardManager } = await ((await import(utils)).default)();
 
 import express from 'express';
+import expressLayouts from 'express-ejs-layouts';
+
 const app = express();
+app.set(`view engine`, `ejs`);
+app.set(`views`, path.join(process.cwd(), `src`, `views`));
+
+app.use(expressLayouts);
+app.set(`layout`, `layouts/main`);
 
 let manager = new shardManager(path.join(__dirname, `./bot.js`), process.env.token);
 await manager.init();
 app.use(manager.web);
-
 
 app.listen(process.env.port);
