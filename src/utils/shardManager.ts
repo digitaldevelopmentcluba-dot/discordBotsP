@@ -31,8 +31,21 @@ export default class shardManager extends EventEmitter {
 
         router.get(`/`, (req, res) => {
             res.render(`index`, { 
-                title: `Home Page`,
+                title: `Home`,
                 elapsed: (new Date() as any) - (start as any),
+            });
+        });
+
+        router.get(`/about`, (req, res) => {
+            res.render(`about`, { 
+                title: `About`,
+            });
+        });
+
+        router.use((req, res) => {
+            res.status(404).render(`invalid`, {
+                title: `Invalid`,
+                path: req.originalUrl
             });
         });
 

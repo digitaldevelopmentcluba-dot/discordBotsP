@@ -1,0 +1,230 @@
+<style>
+    main > div {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: sectionLoad 0.6s ease forwards;
+    }
+
+    main > div:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    main > div:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+
+    @keyframes sectionLoad {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .status-section {
+        text-align: center;
+        margin-top: 40px;
+        z-index: -1;
+    }
+
+    .status-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    .status-section pre {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        color: var(--text-color);
+    }
+
+    .officers-section {
+        text-align: center;
+        margin: 50px auto;
+        margin-top: 50px;
+        padding: 10px;
+        width: 70%;
+    }
+
+    .officers-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-color);
+        margin-bottom: 10px;
+    }
+
+    .officers-section p {
+        font-size: 1.1rem;
+        opacity: 0.85;
+        color: var(--text-color);
+        margin-bottom: 30px;
+    }
+
+    .officers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 5px;
+        justify-items: center;
+    }
+
+    .officer-card {
+        background: rgba(255,255,255,0.05);
+        padding: 20px;
+        border-radius: 12px;
+        width: 180px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    :root.light .officer-card {
+        background: rgba(0,0,0,0.05);
+    }
+
+    .officer-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 12px var(--text-color);
+    }
+
+    .officer-card img {
+        width: 100%;
+        height: 100%;
+        max-width: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .officer-card h3 {
+        margin: 5px 0;
+        font-size: 1.2rem;
+        color: var(--text-color);
+    }
+
+    .officer-card span {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        color: var(--text-color);
+    }
+
+    .status-section {
+        text-align: center;
+        margin-top: 40px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .officer-card p {
+        font-size: 0.85rem;
+        opacity: 0.75;
+        color: var(--text-color);
+        margin-top: 8px;
+        line-height: 1.3;
+    }
+
+    .officer-card img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        filter: invert(calc(1 - var(--inversion)))
+    }
+
+    @media (max-width: 768px) {
+        .status-section {
+            width: 90%;
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        .status-section h2 {
+            font-size: 1.6rem;
+        }
+
+        .status-section p,
+        .status-section pre {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+    }
+
+    .officer-card {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: officerLoad 0.6s ease forwards;
+    }
+
+    .officer-card:nth-child(1) { animation-delay: 0.2s; }
+    .officer-card:nth-child(2) { animation-delay: 0.35s; }
+    .officer-card:nth-child(3) { animation-delay: 0.5s; }
+    .officer-card:nth-child(4) { animation-delay: 0.65s; }
+    .officer-card:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes officerLoad {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="status-section">
+    <h2>About the Digital Development Club!</h2>
+    <p>
+The Digital Development Club is a self-directed Chattanooga State Community College club where we help you achieve your goals related to digital development. Whether you're looking to learn, create, or collaborate, we provide guidance, resources, and support to help you along the way
+    </p><br>
+    <p>
+        When it comes to projects, we don’t impose any control unless the project is hosted on the official <a href="https://github.com/digitaldevelopmentcluba-dot">club GitHub account</a>. If a project is on the GitHub, it becomes a shared club project, meaning all members can contribute, modify, and collaborate on it. These projects will also be open-source, allowing anyone to learn and build upon them.
+    </p><br>
+    <p>
+        If you love coding, want to learn, or simply enjoy hanging out with like-minded individuals, you’re welcome to join us! To get started, just join our <a href="https://www.discord.gg/mRqCMxtjXW">Discord server</a>.
+    </p>
+</div>
+
+<div class="officers-section">
+    <h2>Meet the Officers</h2>
+    <p>Our leadership keeps the Digital Development Club running smoothly!</p>
+
+    <div class="officers-grid">
+
+        <div class="officer-card">
+            <img src="assets/anonymous.png" alt="President">
+            <h3>Placeholder</h3>
+            <span>President</span>
+            <p>Lorem ipsum dolor sit amet. Et velit repellendus sit ipsam voluptatem eum porro ducimus est dolorem quia At quasi expedita sit dolore alias ut possimus magnam.</p>
+        </div>
+
+        <div class="officer-card">
+            <img src="assets/anonymous.png" alt="Vice President">
+            <h3>Placeholder</h3>
+            <span>Vice President</span>
+            <p>Lorem ipsum dolor sit amet. Et velit repellendus sit ipsam voluptatem eum porro ducimus est dolorem quia At quasi expedita sit dolore alias ut possimus magnam.</p>
+        </div>
+
+        <div class="officer-card">
+            <img src="assets/anonymous.png" alt="Communications Lead">
+            <h3>Placeholder</h3>
+            <span>Communications Lead</span>
+            <p>Lorem ipsum dolor sit amet. Et velit repellendus sit ipsam voluptatem eum porro ducimus est dolorem quia At quasi expedita sit dolore alias ut possimus magnam.</p>
+        </div>
+
+        <div class="officer-card">
+            <img src="assets/anonymous.png" alt="Secretary">
+            <h3>Placeholder</h3>
+            <span>Secretary</span>
+            <p>Lorem ipsum dolor sit amet. Et velit repellendus sit ipsam voluptatem eum porro ducimus est dolorem quia At quasi expedita sit dolore alias ut possimus magnam.</p>
+        </div>
+
+        <div class="officer-card">
+            <img src="assets/anonymous.png" alt="Treasurer">
+            <h3>Placeholder</h3>
+            <span>Treasurer</span>
+            <p>Lorem ipsum dolor sit amet. Et velit repellendus sit ipsam voluptatem eum porro ducimus est dolorem quia At quasi expedita sit dolore alias ut possimus magnam.</p>
+        </div>
+
+    </div>
+</div>
+
+
+<%- include("partials/footer") %>
