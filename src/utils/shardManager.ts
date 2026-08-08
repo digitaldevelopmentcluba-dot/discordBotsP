@@ -1,6 +1,16 @@
 import { Shard, ShardingManager } from 'discord.js';
 import { EventEmitter } from 'node:events';
 import express, {Router, type Application} from 'express';
+import { dataStore, dataStoreService } from "#utils/database.js";
+
+declare global {
+    var datastoreService: dataStoreService;
+    var datastore: dataStore;
+}
+
+const datastoreService = global.datastoreService = new dataStoreService(process.env.mongo ? process.env.mongo : ``, `ddc`);
+await datastoreService.connect();
+const datastore = global.datastore = datastoreService.getDataStore(`main`);
 
 export default class shardManager extends EventEmitter {
     manager : ShardingManager; web : Router;

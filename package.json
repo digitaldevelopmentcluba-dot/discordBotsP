@@ -26,11 +26,13 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@types/express-session": "^1.19.0",
     "discord.js": "^14.26.5",
     "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.19.0",
     "mongodb": "^5.9.2"
   },
   "imports": {
