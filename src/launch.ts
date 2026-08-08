@@ -22,7 +22,7 @@ app.use(expressLayouts);
 app.set(`layout`, `layouts/main`);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
-app.use(express.static(path.join(process.cwd(), `src`, `web`, `views`, 'public')));
+app.use(express.static(path.join(process.cwd(), `src`, `web`, 'public')));
 
 let manager = new shardManager(path.join(__dirname, `./bot.js`), process.env.token);
 await manager.init();
