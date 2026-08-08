@@ -28,7 +28,7 @@
     "discord.js": "^14.26.5",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongodb": "^7.5.0"
+    "mongodb": "^5.9.2"
   },
   "imports": {
     "#src/*": "./dist/*",

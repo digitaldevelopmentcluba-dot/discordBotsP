@@ -18,4 +18,5 @@ let manager = new shardManager(path.join(__dirname, `./bot.js`), process.env.tok
 await manager.init();
 app.use(manager.web);
 
+
 app.listen(process.env.port);
