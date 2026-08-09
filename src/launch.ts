@@ -64,11 +64,11 @@ passport.use(new Strategy(
   }
 ));
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user : any, done : any) => {
   done(null, user);
 });
 
-passport.deserializeUser((obj: any, done) => {
+passport.deserializeUser((obj: any, done : any) => {
   done(null, obj);
 });
 
@@ -82,7 +82,7 @@ app.get(
 );
 
 app.get(`/logout`, (req, res) => {
-  req.logout(() => {
+  req.logOut(() => {
     res.redirect(`/`);
   });
 });
