@@ -23,7 +23,7 @@
 body { 
     background-color: var(--bg-color);
     color: var(--text-color);
-    z-index: 6;
+    z-index: 5;
 }
 
 body::before {

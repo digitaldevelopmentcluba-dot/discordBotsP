@@ -1,82 +1,8 @@
+<link rel="stylesheet" href="styles/home.css">
+
 <video autoplay muted loop playsinline id="bg-video">
     <source src="assets/background.mp4" type="video/mp4">
 </video>
-
-<style>
-    #bg-video {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -1;
-        filter: blur(24px) invert(var(--inversion));
-        pointer-events: none;
-    }
-
-    body {
-        background-color: black;
-    }
-
-    .status-section {
-        text-align: center;
-        margin-top: 40px;
-        z-index: -1;
-    }
-
-    .status-section h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        color: var(--text-color);
-    }
-
-    .status-section p {
-        font-size: 1.1rem;
-        opacity: 0.8;
-        color: var(--text-color);
-    }
-
-    .parallax {
-        position: relative;
-        width: 100%;
-        height: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none;
-    }
-
-    .parallax img {
-        z-index: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: transform 0.1s ease-out;
-    }
-
-    .page-sections > * {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: sectionLoad 0.6s ease forwards;
-    }
-
-    .page-sections > *:nth-child(1) {
-        animation-delay: 0.2s;
-    }
-
-    .page-sections > *:nth-child(2) {
-        animation-delay: 0.5s;
-    }
-
-    @keyframes sectionLoad {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-</style>
 
 <div class="page-sections">
     <div class="parallax">
@@ -89,39 +15,5 @@
     </div>
 </div>
 
-<script>
-    let currentX = 0;
-    let currentY = 0;
-    let targetX = 0;
-    let targetY = 0;
-
-    document.addEventListener("mousemove", (e) => {
-        const img = document.querySelector(".parallax img");
-        const rect = img.getBoundingClientRect();
-
-        const imgX = rect.left + rect.width / 2;
-        const imgY = rect.top + rect.height / 2;
-
-        targetX = -(e.clientY - imgY) / 20;
-        targetY = (e.clientX - imgX) / 20;
-    });
-
-    function lerp(a, b, t) {
-        return a + (b - a) * t;
-    }
-
-    function animate() {
-        const img = document.querySelector(".parallax img");
-
-        currentX = lerp(currentX, targetX, 0.1);
-        currentY = lerp(currentY, targetY, 0.1);
-
-        img.style.transform = `rotateX(${currentX}deg) rotateY(${currentY}deg)`;
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-</script>
-
+<script src="scripts/parallax.js"></script>
 <%- include("partials/footer") %>
