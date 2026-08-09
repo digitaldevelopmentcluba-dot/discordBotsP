@@ -40,6 +40,7 @@ export default class shardManager extends EventEmitter {
         router.get(`/about`, (req, res) => {
             res.render(`about`, { 
                 title: `About`,
+                user: req.user,
             });
         });
 
@@ -68,6 +69,7 @@ export default class shardManager extends EventEmitter {
 
             res.render(`status`, {
                 title: `Bot Status`,
+                user: req.user,
                 shards: shardData,
                 shardCount: shardData.length,
                 totalGuilds: shardData.reduce((a, b) => a + (typeof b.guilds === `number` ? b.guilds : 0), 0)
@@ -77,6 +79,7 @@ export default class shardManager extends EventEmitter {
         router.use((req, res) => {
             res.status(404).render(`invalid`, {
                 title: `Invalid`,
+                user: req.user,
                 path: req.originalUrl
             });
         });
