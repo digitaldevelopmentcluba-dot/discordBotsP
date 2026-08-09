@@ -22,7 +22,8 @@
 
 body { 
     background-color: var(--bg-color);
-    color: var(--text-color)
+    color: var(--text-color);
+    z-index: 6;
 }
 
 body::before {

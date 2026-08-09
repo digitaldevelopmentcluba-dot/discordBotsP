@@ -61,5 +61,30 @@ for (const file of fs.readdirSync(events)) {
     client.on(event.event, (...args) => event.execute(...args, client));
 }
 
+setInterval(() => {
+    const mem = process.memoryUsage();
+    const cpu = process.cpuUsage();
+
+    process.send?.({
+        type: "status",
+        shardId: process.env.SHARD_ID,
+        data: {
+            ping: client.ws.ping,
+            guilds: client.guilds.cache.size,
+            uptime: client.uptime,
+            memory: {
+                rss: mem.rss,
+                heapUsed: mem.heapUsed,
+                heapTotal: mem.heapTotal
+            },
+            cpu: {
+                user: cpu.user,
+                system: cpu.system
+            },
+            wsStatus: client.ws.status,
+        }
+    });
+}, 5000);
+
 await client.login(token);
 export default client;

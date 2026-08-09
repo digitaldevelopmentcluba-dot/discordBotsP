@@ -15,6 +15,7 @@ const datastore = global.datastore = datastoreService.getDataStore(`main`);
 export default class shardManager extends EventEmitter {
     manager : ShardingManager; web : Router;
     #shards : Shard[] = [];
+    #status = new Map<number, any>();
 
     constructor(path = `/`!, token = process.env.token!) {
         super();
@@ -42,6 +43,37 @@ export default class shardManager extends EventEmitter {
             });
         });
 
+        router.get(`/status`, async (req, res) => {
+            const shardData = [];
+
+            for (const shard of this.#shards) {
+                const stats = this.#status.get(shard.id) ?? {};
+
+                shardData.push({
+                    id: shard.id,
+                    ready: shard.ready,
+                    guilds: stats.guilds ?? `Unknown`,
+                    ping: stats.ping ?? `Unknown`,
+                    uptime: stats.uptime ?? 0,
+                    memory: stats.memory ?? {},
+                    cpu: stats.cpu ?? {},
+                    wsStatus: stats.wsStatus ?? `Unknown`,
+                    lastHeartbeat: stats.lastHeartbeat ?? `Unknown`,
+                    commandsRun: stats.commandsRun ?? 0,
+                    messagesSeen: stats.messagesSeen ?? 0,
+                    errors: stats.errors ?? 0,
+                    warnings: stats.warnings ?? 0
+                });
+            }
+
+            res.render(`status`, {
+                title: `Bot Status`,
+                shards: shardData,
+                shardCount: shardData.length,
+                totalGuilds: shardData.reduce((a, b) => a + (typeof b.guilds === `number` ? b.guilds : 0), 0)
+            });
+        });
+
         router.use((req, res) => {
             res.status(404).render(`invalid`, {
                 title: `Invalid`,
@@ -56,6 +88,11 @@ export default class shardManager extends EventEmitter {
                 switch (type) {
                     case `ping`:
                         shard.send({type: `pong`, data: `You have been ponged!`});
+                        break;
+                    case 'status':
+                        if(message.data) {
+                           this.#status.set(shard.id, message.data);
+                        }
                         break;
                 }
             })
