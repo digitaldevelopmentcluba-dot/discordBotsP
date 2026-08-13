@@ -81,7 +81,7 @@ export default class shardManager extends EventEmitter {
         });
 
         router.get(`/coc`, async(req, res) => {
-            res.redirect(`assets/CodeAndConduct.pdf`);
+            res.redirect(`assets/CodeOfConduct.pdf`);
         });
 
         router.get(`/bylaws`, async(req, res) => {
