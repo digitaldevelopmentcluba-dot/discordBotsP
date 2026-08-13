@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <div class="status-section" style="margin-top: 20px">
     <h1>Club News & Updates</h1>
 
@@ -461,4 +463,10 @@
         overlay.classList.remove("visible");
     });
 
+</script>
+
+<script>
+    document.querySelectorAll(".news-summary").forEach(el => {
+        el.innerHTML = marked.parse(el.innerHTML);
+    });
 </script>
