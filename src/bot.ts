@@ -6,7 +6,6 @@ import {
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { dataStore, dataStoreService } from "#utils/database.js";
 
 const token = process.env.token;
 
@@ -18,15 +17,6 @@ declare module "discord.js" {
         commands: Collection<string, any>;
     }
 }
-
-declare global {
-    var datastoreService: dataStoreService;
-    var datastore: dataStore;
-}
-
-const datastoreService = global.datastoreService = new dataStoreService(process.env.mongo ? process.env.mongo : ``, `ddc`);
-await datastoreService.connect();
-const datastore = global.datastore = datastoreService.getDataStore(`main`);
 
 const client : Client = new Client({
     intents: [
@@ -40,12 +30,12 @@ const client : Client = new Client({
     ],
 });
 
-import {commandBuilder} from '#utils/commandBuilder.js';
+import {commandBuilder} from '#utils/commands/commandBuilder.js';
 await commandBuilder.setClient(client);
 
 let commands = path.join(__dirname, `./commands`);
 for (let file of fs.readdirSync(commands)) {
-    if (!file.endsWith(".js")) continue;
+    if (!file.endsWith(`.js`)) continue;
     let filePath = pathToFileURL(path.join(commands, file)).href;
     const { command } = await import(filePath);
     command.data = command.build();
@@ -54,7 +44,7 @@ for (let file of fs.readdirSync(commands)) {
 
 let events = path.join(__dirname, `./events`);
 for (const file of fs.readdirSync(events)) {
-    if (!file.endsWith(".js")) continue;
+    if (!file.endsWith(`.js`)) continue;
     const filePath = pathToFileURL(path.join(events, file)).href;
     const module = await import(filePath);
     const event = module.default || module;
@@ -66,7 +56,7 @@ setInterval(() => {
     const cpu = process.cpuUsage();
 
     process.send?.({
-        type: "status",
+        type: `status`,
         shardId: process.env.SHARD_ID,
         data: {
             ping: client.ws.ping,

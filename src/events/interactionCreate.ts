@@ -1,6 +1,6 @@
 import { Events, CommandInteraction, MessageFlags, type Interaction } from 'discord.js';
-import {commandBuilder} from '#utils/commandBuilder.js'
-import { buttonBuilder, modalBuilder } from '#utils/components.js';
+import {commandBuilder} from '#utils/commands/commandBuilder.js'
+import { buttonBuilder, modalBuilder } from '#utils/components/components.js';
 
 export default {
     event: Events.InteractionCreate,

@@ -8,18 +8,23 @@ const __dirname = path.dirname(__filename);
 import dotenv from 'dotenv';
 dotenv.config({path: path.join(__dirname, `../config/.env`)});
 
-let utils = pathToFileURL(path.join(__dirname, `/utils/index.js`)).href;
-let { shardManager } = await ((await import(utils)).default)();
+const utilsPath = pathToFileURL(
+    path.join(__dirname, 'utils/index.js')
+).href;
+
+const utilsModule = await import(utilsPath);
+const modules = await (utilsModule.default ? utilsModule.default() : utilsModule());
+const shardManager = modules[`core/shardManager`];
 
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
 
 const app = express();
 app.set(`view engine`, `ejs`);
-app.set(`views`, path.join(process.cwd(), `src`, `web`, `views`));
+app.set(`views`, path.join(process.cwd(), `src`, `web`, `views`, `pages`));
 
 app.use(expressLayouts);
-app.set(`layout`, `layouts/main`);
+app.set(`layout`, path.join(process.cwd(), `src`, `web`, `views`, `layouts`, `main`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 app.use(express.static(path.join(process.cwd(), `src`, `web`, 'public')));
@@ -27,6 +32,7 @@ app.use(express.static(path.join(process.cwd(), `src`, `web`, 'public')));
 import session from 'express-session';
 import { Strategy } from "passport-discord";
 import passport from 'passport'
+import utils from './utils/index.js';
 
 
 function isLoggedIn(req : any, res : any, next : any) {

@@ -1,7 +1,8 @@
 import { Shard, ShardingManager } from 'discord.js';
 import { EventEmitter } from 'node:events';
 import express, {Router, type Application} from 'express';
-import { dataStore, dataStoreService } from "#utils/database.js";
+import { dataStore, dataStoreService } from "#utils/core/database.js";
+import pathm from 'node:path';
 
 declare global {
     var datastoreService: dataStoreService;
@@ -77,6 +78,14 @@ export default class shardManager extends EventEmitter {
                 shardCount: shardData.length,
                 totalGuilds: shardData.reduce((a, b) => a + (typeof b.guilds === `number` ? b.guilds : 0), 0)
             });
+        });
+
+        router.get(`/coc`, async(req, res) => {
+            res.redirect(`assets/CodeAndConduct.pdf`);
+        });
+
+        router.get(`/bylaws`, async(req, res) => {
+            res.redirect(`assets/ConstitutionAndBylaws.pdf`);
         });
 
         router.use((req, res) => {

@@ -1,6 +1,6 @@
-import {commandBuilder} from '#utils/commandBuilder.js';
+import {commandBuilder} from '#utils/commands/commandBuilder.js';
 import { type Interaction, type ChatInputCommandInteraction, type ActionRow, MessageFlags, ActionRowBuilder, EmbedBuilder, ButtonInteraction } from 'discord.js';
-import { buttonBuilder } from '#utils/components.js';
+import { buttonBuilder } from '#utils/components/components.js';
 
 import fs from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
