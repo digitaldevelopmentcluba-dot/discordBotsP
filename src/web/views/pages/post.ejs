@@ -23,7 +23,7 @@
                     <% }) %>
             </div>
 
-            <div class="news-content" id="content"><%- post.renderedContent %></div>
+            <div class="news-content" id="content"><%- post.content %></div>
 
             <a href="/news" class="back-link">← Back to News</a>
 
@@ -232,6 +232,8 @@
 </style>
 
 <script>
-    let id = document.getElementById(`content`);
-    id.innerHTML = marked.parse(id.innerHTML);
+    window.onload = () => {
+        const el = document.getElementById("content");
+        el.innerHTML = marked.parse(el.innerHTML);
+    };
 </script>
