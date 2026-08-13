@@ -43,9 +43,9 @@
                                 <% }) %>
                         </div>
 
-                        <p class="news-summary">
+                        <div class="news-summary" data-md>
                             <%= post.summary %>
-                        </p>
+                        </div>
             </div>
             <% }) %>
     </div>
@@ -302,9 +302,85 @@
     }
 
     .news-summary {
+        margin-top: 10px;
         font-size: 1rem;
-        opacity: 0.85;
+        line-height: 1.45;
+        color: var(--text-color);
+        opacity: 0.9;
+        text-align: left;
     }
+
+    .news-summary p {
+        margin: 8px 0;
+    }
+
+    .news-summary strong,
+    .news-summary b {
+        font-weight: 600;
+    }
+
+    .news-summary em,
+    .news-summary i {
+        opacity: 0.9;
+    }
+
+    .news-summary a {
+        color: var(--text-color);
+        opacity: 0.85;
+        text-decoration: underline;
+        transition: opacity 0.25s ease;
+    }
+
+    .news-summary a:hover {
+        opacity: 1;
+    }
+
+    .news-summary ul,
+    .news-summary ol {
+        margin: 8px 0 8px 20px;
+        padding-left: 18px;
+    }
+
+    .news-summary li {
+        margin: 4px 0;
+    }
+
+    .news-summary code {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+
+    .news-summary blockquote {
+        border-left: 3px solid var(--text-color);
+        padding-left: 10px;
+        margin: 10px 0;
+        opacity: 0.85;
+        font-style: italic;
+    }
+
+    .news-summary img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 10px 0;
+    }
+
+    .news-summary hr {
+        border: none;
+        border-top: 1px solid var(--text-color);
+        opacity: 0.25;
+        margin: 12px 0;
+    }
+
+    @media (max-width: 768px) {
+        .news-summary {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+    }
+
 
     .author-block {
         display: flex;
@@ -466,7 +542,7 @@
 </script>
 
 <script>
-    document.querySelectorAll(".news-summary").forEach(el => {
+    document.querySelectorAll("[data-md]").forEach(el => {
         el.innerHTML = marked.parse(el.innerHTML);
     });
 </script>
