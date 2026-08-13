@@ -2,7 +2,7 @@
 <div class="status-section">
     <h2><%= post.title %></h2>
 
-    <span class="news-date"><%= post.date %></span>
+    <span class="news-date"><%= post.date.toLocaleString("en-US", {year: "numeric",month: "long",day: "numeric",hour: "2-digit",minute: "2-digit"}) %></span>
     <span class="news-author">By <%= post.author %></span>
 
     <% if (post.thumbnail) { %>

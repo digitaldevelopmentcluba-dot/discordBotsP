@@ -1,4 +1,21 @@
 import { type Router } from "express";
+import crypto from "crypto";
+import { addNewsPost, getNewsPostById, getAllNewsPosts, validateNewsPost } from "#utils/core/news.js"
+import { isLoggedIn } from "#utils/core/passport.js"
+
+export function extractSummary(content : any) {
+  if (!content || typeof content !== `string`) return ``;
+
+  const text = content.toString().trim();
+  const match = text.match(/[.!?]/);
+
+  if (match) {
+    const index : any = match.index;
+    return text.substring(0, index + 1);
+  }
+
+  return text.substring(0, 160);
+}
 
 export function setupRouter(router: Router, self?: any) {
   let start = new Date();
@@ -61,19 +78,7 @@ export function setupRouter(router: Router, self?: any) {
   });
 
   router.get(`/news`, async (req, res) => {
-    const posts = [
-      {
-        id: 1,
-        title: "Temporary",
-        summary: "A true test of our capabilities.",
-        author: `Breezist`, 
-        authorThumb: `/assets/breezist.png`,
-        date: new Date(),
-        tags: ["announcement", "club"],
-        thumbnail: "/assets/4k.png"
-      },
-    ];
-
+    const posts = await getAllNewsPosts();
     res.render(`news`, {
       title: `News`,
       posts
@@ -81,22 +86,8 @@ export function setupRouter(router: Router, self?: any) {
   });
 
   router.get(`/news/:id`, async (req, res) => {
-    const { id } = req.params;
-    const posts: any = {
-      1: {
-        title: "Temporary",
-        author: `Breezist`, 
-        authorThumb: `/assets/breezist.png`,
-        content: `
-  A true test of our capabilities.
-        `,
-        date: new Date(),
-        tags: ["announcement", "club"],
-        thumbnail: "/assets/4k.png"
-      },
-    };
-
-    const post = posts[id];
+    const id = req.params.id;
+    const post = await getNewsPostById(id);
 
     if (!post) {
       return res.status(404).render(`invalid`, {
@@ -111,11 +102,32 @@ export function setupRouter(router: Router, self?: any) {
     });
   });
 
-  router.use((req, res) => {
-    res.status(404).render(`invalid`, {
-      title: `Invalid`,
-      path: req.originalUrl
+  router.post(`/news`, isLoggedIn, async (req, res) => {
+    const validation = validateNewsPost(req.body);
+
+    if (!validation.valid) {
+      return res.status(400).json({
+        error: "Invalid request body",
+        details: validation.errors
+      });
+    }
+
+    const { title, summary, author, tags, thumbnail, content } = req.body;
+    const id = crypto.randomUUID();
+    let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter(t => t.length > 0) : []);
+
+    await addNewsPost({
+      id,
+      title,
+      summary: extractSummary(content),
+      author,
+      authorThumb: `/assets/${author}.png`,
+      date: new Date(),
+      tags: formattedTags ?? [],
+      thumbnail,
+      content
     });
+
+    res.redirect(`/news/${id}`);
   });
 }
-

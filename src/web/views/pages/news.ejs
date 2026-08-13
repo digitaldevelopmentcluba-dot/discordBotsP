@@ -2,41 +2,191 @@
     <h1>Club News & Updates</h1>
 
     <div class="news-list">
-        <% posts.forEach(post => { %>
-        <div class="news-card">
-            <% if (post.thumbnail) { %>
-            <div class="thumb-wrapper">
-                <div class="thumb-parallax" style="background-image: url('<%= post.thumbnail %>');">
-                </div>
+        <% posts.forEach(post=> { %>
+            <div class="news-card">
+                <% if (post.thumbnail) { %>
+                    <div class="thumb-wrapper">
+                        <div class="thumb-parallax" style="background-image: url('<%= post.thumbnail %>');">
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <h3>
+                            <a href="/news/<%= post.id %>">
+                                <%= post.title %>
+                            </a>
+                        </h3>
+
+                        <div class="author-block">
+                            <% if (post.authorThumb) { %>
+                                <img class="author-thumb" src="<%= post.authorThumb %>" alt="<%= post.author %>">
+                                <% } %>
+
+                                    <div class="author-info">
+                                        <span class="news-author">
+                                            <%= post.author %>
+                                        </span>
+                                        <span class="news-date">
+                                            <%= post.date.toLocaleString("en-US", {year: "numeric" ,month: "long",day: "numeric" ,hour: "2-digit" ,minute: "2-digit" }); %>
+                                        </span>
+                                    </div>
+                        </div>
+
+                        <div class="news-tags">
+                            <% post.tags.forEach(tag=> { %>
+                                <span class="tag">
+                                    <%= tag %>
+                                </span>
+                                <% }) %>
+                        </div>
+
+                        <p class="news-summary">
+                            <%= post.summary %>
+                        </p>
             </div>
-            <% } %>
-
-            <h3>
-                <a href="/news/<%= post.id %>"><%= post.title %></a>
-            </h3>
-
-            <div class="author-block">
-                <% if (post.authorThumb) { %>
-                <img class="author-thumb" src="<%= post.authorThumb %>" alt="<%= post.author %>">
-                <% } %>
-
-                <div class="author-info">
-                    <span class="news-author"><%= post.author %></span>
-                    <span class="news-date"><%= post.date %></span>
-                </div>
-            </div>
-
-            <div class="news-tags">
-                <% post.tags.forEach(tag => { %>
-                <span class="tag"><%= tag %></span>
-                <% }) %>
-            </div>
-
-            <p class="news-summary"><%= post.summary %></p>
-        </div>
-        <% }) %>
+            <% }) %>
     </div>
 </div>
+
+<button id="openCreateMenu" class="create-news-btn">Create Post</button>
+
+<div id="createMenuOverlay" class="create-menu-overlay"></div>
+
+<div id="createMenu" class="create-menu">
+    <h2>Create News Post</h2>
+
+    <form action="/news" method="POST" class="create-form">
+
+        <label>
+            Title
+            <input type="text" name="title" required>
+        </label>
+
+        <label>
+            Author
+            <input type="text" name="author" required>
+        </label>
+
+        <label>
+            Thumbnail URL
+            <input type="text" name="thumbnail" placeholder="https://example.com/image.jpg">
+        </label>
+
+        <label>
+            Tags (comma separated)
+            <input type="text" name="tags" placeholder="club, update, event">
+        </label>
+
+        <label>
+            Content
+            <textarea name="content" rows="10" required></textarea>
+        </label>
+
+        <button type="submit" class="submit-btn">Publish</button>
+    </form>
+</div>
+
+<style>
+    .create-news-btn {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 20px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        border: none;
+        background: var(--text-color);
+        color: var(--bg-color);
+        cursor: pointer;
+        transition: opacity 0.25s ease;
+    }
+
+    .create-news-btn:hover {
+        opacity: 0.8;
+    }
+
+    .create-menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 998;
+    }
+
+    .create-menu {
+        position: fixed;
+        top: 0;
+        right: -450px;
+        width: 450px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-left: 2px solid var(--text-color);
+        padding: 25px;
+        overflow-y: auto;
+        transition: right 0.35s ease;
+        z-index: 999;
+    }
+
+    :root.light .create-menu {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .create-menu.open {
+        right: 0;
+    }
+
+    .create-menu-overlay.visible {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .create-menu h2 {
+        color: var(--text-color);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .create-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .create-form label {
+        display: flex;
+        flex-direction: column;
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    .create-form input,
+    .create-form textarea {
+        margin-top: 6px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid var(--text-color);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+    }
+
+    .submit-btn {
+        padding: 12px;
+        border-radius: 6px;
+        border: none;
+        background: var(--text-color);
+        color: var(--bg-color);
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: opacity 0.25s ease;
+    }
+
+    .submit-btn:hover {
+        opacity: 0.8;
+    }
+</style>
+
 
 <style>
     .news-list {
@@ -293,4 +443,21 @@
 
         animate();
     });
+</script>
+
+<script>
+    const openBtn = document.getElementById("openCreateMenu");
+    const menu = document.getElementById("createMenu");
+    const overlay = document.getElementById("createMenuOverlay");
+
+    openBtn.addEventListener("click", () => {
+        menu.classList.add("open");
+        overlay.classList.add("visible");
+    });
+
+    overlay.addEventListener("click", () => {
+        menu.classList.remove("open");
+        overlay.classList.remove("visible");
+    });
+
 </script>
