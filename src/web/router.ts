@@ -123,6 +123,9 @@ export function setupRouter(router: Router, self?: any) {
     let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter((t : any) => t.length > 0) : []);
     
     const user : any = req.user;
+    const approvedUsers = ["1222647770788397168"]
+
+    if(approvedUsers.includes(user.id)) return res.send(`You are not authorized to use this endpoint!`)
 
     await addNewsPost({
       id,
