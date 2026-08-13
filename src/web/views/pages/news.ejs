@@ -27,7 +27,8 @@
                                             <%= post.author %>
                                         </span>
                                         <span class="news-date">
-                                            <%= post.date.toLocaleString("en-US", {year: "numeric" ,month: "long",day: "numeric" ,hour: "2-digit" ,minute: "2-digit" }); %>
+                                            <%= post.date.toLocaleString("en-US", {year: "numeric" ,month: "long"
+                                                ,day: "numeric" ,hour: "2-digit" ,minute: "2-digit" }); %>
                                         </span>
                                     </div>
                         </div>
@@ -81,28 +82,28 @@
 
 <style>
     .create-news-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
 
-    padding: 14px 22px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    border: none;
+        padding: 14px 22px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        border: none;
 
-    background: var(--text-color);
-    color: var(--bg-color);
+        background: var(--text-color);
+        color: var(--bg-color);
 
-    cursor: pointer;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+        cursor: pointer;
+        transition: opacity 0.25s ease, transform 0.25s ease;
 
-    z-index: 1500; /* stays above overlay */
-}
+        z-index: 1500;
+    }
 
-.create-news-btn:hover {
-    opacity: 0.85;
-    transform: translateY(-3px);
-}
+    .create-news-btn:hover {
+        opacity: 0.85;
+        transform: translateY(-3px);
+    }
 
 
     .create-menu-overlay {

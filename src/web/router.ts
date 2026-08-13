@@ -2,6 +2,7 @@ import { type Router } from "express";
 import crypto from "crypto";
 import { addNewsPost, getNewsPostById, getAllNewsPosts, validateNewsPost } from "#utils/core/news.js"
 import { isLoggedIn, getAvatarUrl } from "#utils/core/passport.js"
+import marked from 'marked';
 
 export function extractSummary(content : any) {
   if (!content || typeof content !== `string`) return ``;
@@ -96,9 +97,14 @@ export function setupRouter(router: Router, self?: any) {
       });
     }
 
+    const renderedContent = marked(post.content);
+
     res.render(`post`, {
       title: post.title,
-      post
+      post: {
+        ...post,
+        renderedContent
+      }
     });
   });
 
