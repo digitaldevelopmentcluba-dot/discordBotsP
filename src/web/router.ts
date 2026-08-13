@@ -119,7 +119,7 @@ export function setupRouter(router: Router, self?: any) {
     const user : any = req.user;
     const approvedUsers = ["1222647770788397168"]
 
-    if(approvedUsers.includes(user.id)) return res.send(`You are not authorized to use this endpoint!`)
+    if(!approvedUsers.includes(user.id.toString())) return res.send(`You are not authorized to use this endpoint!`)
 
     await addNewsPost({
       id,
