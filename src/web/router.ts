@@ -117,6 +117,7 @@ export function setupRouter(router: Router, self?: any) {
     let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter((t : any) => t.length > 0) : []);
     
     const user : any = req.user;
+    console.log(user)
 
     await addNewsPost({
       id,
