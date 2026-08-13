@@ -18,7 +18,7 @@ export async function addNewsPost(post : any) {
 export function validateNewsPost(body : any) {
   const errors : Record<string, any> = {};
 
-  const requiredStrings = [`title`, `author`, `content`];
+  const requiredStrings = [`title`, `content`];
   for (const field of requiredStrings) {
     if (!body[field] || typeof body[field] !== `string` || body[field].trim() === ``) {
       errors[field] = `${field} is required`;
