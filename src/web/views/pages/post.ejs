@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <div class="status-section">
     <h2>
         <%= post.title %>
@@ -21,7 +23,7 @@
                     <% }) %>
             </div>
 
-            <div class="news-content"><%- post.renderedContent %></div>
+            <div class="news-content" id="content"><%- post.renderedContent %></div>
 
             <a href="/news" class="back-link">← Back to News</a>
 
@@ -228,3 +230,8 @@
         }
     }
 </style>
+
+<script>
+    let id = document.getElementById(`content`);
+    id.innerHTML = marked.parse(id.innerHTML);
+</script>

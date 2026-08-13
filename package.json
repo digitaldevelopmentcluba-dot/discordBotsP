@@ -35,7 +35,6 @@
     "express": "^5.2.1",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.19.0",
-    "marked": "^18.0.9",
     "mongodb": "^5.9.2",
     "passport": "^0.7.0",
     "passport-discord": "^0.1.4"
