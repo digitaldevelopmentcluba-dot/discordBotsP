@@ -11,7 +11,7 @@
 
     <% if (post.thumbnail) { %>
         <img class="news-thumb-large" src="<%= post.thumbnail %>" alt="Thumbnail">
-    <% } %>
+        <% } %>
 
             <div class="news-tags">
                 <% post.tags.forEach(tag=> { %>
@@ -24,10 +24,66 @@
             <div class="news-content"><%- post.renderedContent %></div>
 
             <a href="/news" class="back-link">← Back to News</a>
-            
+
 </div>
 
 <style>
+    .status-section {
+        text-align: center;
+        margin-top: 40px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .status-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-color);
+        margin-bottom: 10px;
+    }
+
+    .news-date,
+    .news-author {
+        display: block;
+        font-size: 0.9rem;
+        opacity: 0.75;
+        color: var(--text-color);
+        margin-bottom: 6px;
+    }
+
+    .news-thumb-large {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .news-tags {
+        margin: 10px 0 20px 0;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tag {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        opacity: 0.85;
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+        transition: all 0.25s ease;
+    }
+
+    .tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 10px var(--text-color);
+    }
+
     .news-content {
         background: rgba(255, 255, 255, 0.03);
         padding: 18px 22px;
@@ -130,7 +186,30 @@
         margin: 25px 0;
     }
 
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: var(--text-color);
+        opacity: 0.8;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+        opacity: 1;
+    }
+
     @media (max-width: 768px) {
+        .status-section {
+            width: 90%;
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        .news-thumb-large {
+            max-height: 220px;
+        }
+
         .news-content {
             font-size: 1rem;
             padding: 14px 16px;
