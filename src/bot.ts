@@ -9,6 +9,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const token = process.env.token;
 
+import { setupGlobals } from '#utils/core/globals.js';
+await setupGlobals();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

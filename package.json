@@ -41,6 +41,7 @@
   },
   "imports": {
     "#src/*": "./dist/*",
-    "#utils/*": "./dist/utils/*"
+    "#utils/*": "./dist/utils/*",
+    "#web/*": "./dist/web/*"
   }
 }

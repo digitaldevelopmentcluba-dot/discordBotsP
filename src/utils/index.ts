@@ -5,7 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default async function() {
+export default async function () {
     const modules: Record<string, any> = {};
     const baseDir = __dirname;
     const folders = await fs.promises.readdir(baseDir);
@@ -15,15 +15,19 @@ export default async function() {
         const stat = await fs.promises.stat(folderPath);
 
         if (!stat.isDirectory()) continue;
+
+        modules[folder] = {};
+
         const files = await fs.promises.readdir(folderPath);
 
         for (const file of files) {
-            if (!file.endsWith(`.js`)) continue;
+            if (!file.endsWith('.js')) continue;
 
             const filePath = pathToFileURL(path.join(folderPath, file)).href;
             const imported = await import(filePath);
-            const moduleName = `${folder}/${file.replace(`.js`, ``)}`;
-            modules[moduleName] = imported.default ?? imported;
+
+            const name = file.replace('.js', '');
+            modules[folder][name] = imported.default ?? imported;
         }
     }
 
