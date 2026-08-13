@@ -60,6 +60,57 @@ export function setupRouter(router: Router, self?: any) {
     res.redirect(`assets/ConstitutionAndBylaws.pdf`);
   });
 
+  router.get(`/news`, async (req, res) => {
+    const posts = [
+      {
+        id: 1,
+        title: "Temporary",
+        summary: "A true test of our capabilities.",
+        author: `Breezist`, 
+        authorThumb: `/assets/breezist.png`,
+        date: new Date(),
+        tags: ["announcement", "club"],
+        thumbnail: "/assets/4k.png"
+      },
+    ];
+
+    res.render(`news`, {
+      title: `News`,
+      posts
+    });
+  });
+
+  router.get(`/news/:id`, async (req, res) => {
+    const { id } = req.params;
+    const posts: any = {
+      1: {
+        title: "Temporary",
+        author: `Breezist`, 
+        authorThumb: `/assets/breezist.png`,
+        content: `
+  A true test of our capabilities.
+        `,
+        date: new Date(),
+        tags: ["announcement", "club"],
+        thumbnail: "/assets/4k.png"
+      },
+    };
+
+    const post = posts[id];
+
+    if (!post) {
+      return res.status(404).render(`invalid`, {
+        title: `Post Not Found`,
+        path: req.originalUrl
+      });
+    }
+
+    res.render(`post`, {
+      title: post.title,
+      post
+    });
+  });
+
   router.use((req, res) => {
     res.status(404).render(`invalid`, {
       title: `Invalid`,

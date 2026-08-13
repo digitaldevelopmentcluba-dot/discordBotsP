@@ -19,23 +19,41 @@ main>div:nth-child(2) {
     }
 }
 
-.status-section {
+.about-section {
     text-align: center;
     margin-top: 40px;
     z-index: -1;
 }
 
-.status-section h2 {
+.about-section h2 {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 10px;
     color: var(--text-color);
 }
 
-.status-section pre {
-    font-size: 1.1rem;
-    opacity: 0.8;
+.about-section pre {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 18px 22px;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    line-height: 1.55;
+    font-size: 1.05rem;
     color: var(--text-color);
+    opacity: 0.9;
+    text-align: left;
+    margin-top: 20px;
+
+    font-style: italic;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .about-section pre {
+        font-size: 1rem;
+        line-height: 1.4;
+        padding: 14px 16px;
+    }
 }
 
 .officers-section {
@@ -139,7 +157,7 @@ main>div:nth-child(2) {
     color: var(--text-color);
 }
 
-.status-section {
+.about-section {
     text-align: center;
     margin-top: 40px;
     width: 50%;
@@ -161,22 +179,21 @@ main>div:nth-child(2) {
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 10px;
-    filter: invert(calc(1 - var(--inversion)))
 }
 
 @media (max-width: 768px) {
-    .status-section {
+    .about-section {
         width: 90%;
         margin-top: 30px;
         padding: 10px;
     }
 
-    .status-section h2 {
+    .about-section h2 {
         font-size: 1.6rem;
     }
 
-    .status-section p,
-    .status-section pre {
+    .about-section p,
+    .about-section pre {
         font-size: 1rem;
         line-height: 1.4;
     }

@@ -1,16 +1,15 @@
 <link rel="stylesheet" href="styles/about.css">
 
-<div class="status-section">
+<div class="about-section">
     <h2>About the Digital Development Club!</h2>
-    <p>
-The Digital Development Club is a self-directed Chattanooga State Community College club where we help you achieve your goals related to digital development. Whether you're looking to learn, create, or collaborate, we provide guidance, resources, and support to help you along the way
-    </p><br>
-    <p>
-        When it comes to projects, we don’t impose any control unless the project is hosted on the official <a href="https://github.com/digitaldevelopmentcluba-dot">club GitHub account</a>. If a project is on the GitHub, it becomes a shared club project, meaning all members can contribute, modify, and collaborate on it. These projects will also be open-source, allowing anyone to learn and build upon them.
-    </p><br>
-    <p>
-        If you love coding, want to learn, or simply enjoy hanging out with like-minded individuals, you’re welcome to join us! To get started, just join our <a href="https://www.discord.gg/mRqCMxtjXW">Discord server</a>.
-    </p>
+
+    <pre>
+The Digital Development Club is a self-directed Chattanooga State Community College club where we help you achieve your goals related to digital development. Whether you're looking to learn, create, or collaborate, we provide guidance, resources, and support to help you along the way.
+
+When it comes to projects, we don’t impose any control unless the project is hosted on the official club <a href="https://github.com/digitaldevelopmentcluba-dot">GitHub account</a>. If a project is on the GitHub, it becomes a shared club project, meaning all members can contribute, modify, and collaborate on it. These projects will also be open-source, allowing anyone to learn and build upon them.
+
+If you love coding, want to learn, or simply enjoy hanging out with like-minded individuals, you’re welcome to join us! To get started, just join our <a href="https://www.discord.gg/mRqCMxtjXW">Discord server</a>
+    </pre>
 </div>
 
 <div class="officers-section">
@@ -19,59 +18,6 @@ The Digital Development Club is a self-directed Chattanooga State Community Coll
     <div class="officers-grid" id="officers"></div>
 </div>
 
-<script>
-    const officers = [
-  {
-    name: "Valkyrie (@h4r1337 qu1nn)",
-    role: "President",
-    img: "assets/anonymous.png",
-    bio: `Valkyrie is an avid tech-enthusiast with an interest in hacking all the things.\n\nShe is currently a sophomore student at Chattanooga State and remains an active member of the student community, whether it is through being a peer mentor for TigerAccess, hosting HonkSec Radio on The WAWL, or very recently serving in the SGA, she is always finding something to do on-campus outside of her classes.\n\nOutside of Chattanooga State, she is a member of NoogaHackers (formerly DEF CON Group, DC423), hangs out at local punk shows, and sings karaoke in the area. You might find her hacker handle tagged at some dive bar somewhere in the city.`
-  },
-
-  {
-    name: "Michael (@Breezist)",
-    role: "Vice President",
-    img: "assets/anonymous.png",
-    bio: `Hello! I am Michael, I am a Node.js + TypeScript programmer with 10+ years of experience.\n\nI am currently (as of Fall 2026) a sophomore student at Chattanooga State, in a Tennessee Transfer Pathways program in Computer Science. I will be transferring to the University of Tennessee @ Chattanooga in 2027.\n\nI created this website! If you find any bugs or things that should not be there <s>just turn off light mode - bugs love the light!</s> In all seriousness, contact me on Discord @Breezist.`
-  },
-  {
-    name: "@Alto",
-    role: "Communications Lead",
-    img: "assets/anonymous.png",
-    bio: ""
-  },
-  {
-    name: "Placeholder",
-    role: "Secretary",
-    img: "assets/anonymous.png",
-    bio: ""
-  },
-  {
-    name: "Placeholder",
-    role: "Treasurer",
-    img: "assets/anonymous.png",
-    bio: ""
-  },
-  {
-    name: "Placeholder",
-    role: "Events Planner",
-    img: "assets/anonymous.png",
-    bio: ""
-  }
-];
-
-function renderOfficers(officers) {
-  return officers.map(officer => `
-    <div class="officer-card">
-      <img src="${officer.img}" alt="${officer.role}">
-      <h3>${officer.name}</h3>
-      <span>${officer.role}</span>
-      <pre>${officer.bio}</pre>
-    </div>
-  `).join("");
-}
-
-  document.getElementById("officers").innerHTML = renderOfficers(officers);
-</script>
+<script src="scripts/officers.js"></script>
 
 <%- include("../partials/footer") %>
