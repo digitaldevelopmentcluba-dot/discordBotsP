@@ -7,7 +7,7 @@ export function isLoggedIn(req : any, res : any, next : any) {
   res.redirect(`/discord/auth`);
 }
 
-export function getAvatarUrl(user) {
+export function getAvatarUrl(user : any) {
   if (!user.avatar) {
     const defaultAvatar = Number(user.discriminator) % 5;
     return `https://cdn.discordapp.com/embed/avatars/${defaultAvatar}.png`;
