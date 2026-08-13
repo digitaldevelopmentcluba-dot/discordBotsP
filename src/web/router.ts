@@ -112,17 +112,19 @@ export function setupRouter(router: Router, self?: any) {
       });
     }
 
-    const { title, summary, author, tags, thumbnail, content } = req.body;
+    const { title, summary, tags, thumbnail, content } = req.body;
     const id = crypto.randomUUID();
     let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter((t : any) => t.length > 0) : []);
+    
+    const user : any = req.user;
 
     await addNewsPost({
       id,
       title,
       summary: extractSummary(content),
-      author,
-      authorThumb: `/assets/${author}.png`,
+      authorThumb: user.avatar,
       date: new Date(),
+      author: user.username,
       tags: formattedTags ?? [],
       thumbnail,
       content

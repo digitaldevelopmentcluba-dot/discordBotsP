@@ -25,14 +25,6 @@ export function validateNewsPost(body : any) {
     }
   }
 
-  if (body.tags !== undefined) {
-    if (!Array.isArray(body.tags)) {
-      errors.tags = `tags must be an array`;
-    } else if (!body.tags.every((t : any) => typeof t === `string`)) {
-      errors.tags = `tags must contain only strings`;
-    }
-  }
-
   if (body.thumbnail !== undefined) {
     if (typeof body.thumbnail !== `string`) {
       errors.thumbnail = `thumbnail must be a string`;

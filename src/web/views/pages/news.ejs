@@ -54,17 +54,10 @@
 
 <div id="createMenu" class="create-menu">
     <h2>Create News Post</h2>
-
     <form action="/news" method="POST" class="create-form">
-
         <label>
             Title
             <input type="text" name="title" required>
-        </label>
-
-        <label>
-            Author
-            <input type="text" name="author" required>
         </label>
 
         <label>
@@ -88,30 +81,37 @@
 
 <style>
     .create-news-btn {
-        display: block;
-        margin: 20px auto;
-        padding: 12px 20px;
-        font-size: 1.1rem;
-        border-radius: 8px;
-        border: none;
-        background: var(--text-color);
-        color: var(--bg-color);
-        cursor: pointer;
-        transition: opacity 0.25s ease;
-    }
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
 
-    .create-news-btn:hover {
-        opacity: 0.8;
-    }
+    padding: 14px 22px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: none;
+
+    background: var(--text-color);
+    color: var(--bg-color);
+
+    cursor: pointer;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    z-index: 1500; /* stays above overlay */
+}
+
+.create-news-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-3px);
+}
+
 
     .create-menu-overlay {
-        position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.5);
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
-        z-index: 998;
+        z-index: 1998;
     }
 
     .create-menu {
@@ -126,7 +126,7 @@
         padding: 25px;
         overflow-y: auto;
         transition: right 0.35s ease;
-        z-index: 999;
+        z-index: 1999;
     }
 
     :root.light .create-menu {
