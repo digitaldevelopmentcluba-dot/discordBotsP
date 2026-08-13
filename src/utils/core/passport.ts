@@ -7,6 +7,18 @@ export function isLoggedIn(req : any, res : any, next : any) {
   res.redirect(`/discord/auth`);
 }
 
+export function getAvatarUrl(user) {
+  if (!user.avatar) {
+    const defaultAvatar = Number(user.discriminator) % 5;
+    return `https://cdn.discordapp.com/embed/avatars/${defaultAvatar}.png`;
+  }
+
+  const isGif = user.avatar.startsWith("a_");
+  const ext = isGif ? "gif" : "png";
+
+  return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}`;
+}
+
 export function setupPassport(app : Application) {
   app.use(passport.initialize());
   app.use(passport.session());

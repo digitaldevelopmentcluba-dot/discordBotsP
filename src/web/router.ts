@@ -1,7 +1,7 @@
 import { type Router } from "express";
 import crypto from "crypto";
 import { addNewsPost, getNewsPostById, getAllNewsPosts, validateNewsPost } from "#utils/core/news.js"
-import { isLoggedIn } from "#utils/core/passport.js"
+import { isLoggedIn, getAvatarUrl } from "#utils/core/passport.js"
 
 export function extractSummary(content : any) {
   if (!content || typeof content !== `string`) return ``;
@@ -117,13 +117,12 @@ export function setupRouter(router: Router, self?: any) {
     let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter((t : any) => t.length > 0) : []);
     
     const user : any = req.user;
-    console.log(user)
 
     await addNewsPost({
       id,
       title,
       summary: extractSummary(content),
-      authorThumb: user.avatar,
+      authorThumb: getAvatarUrl(user),
       date: new Date(),
       author: user.username,
       tags: formattedTags ?? [],
