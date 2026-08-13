@@ -114,7 +114,7 @@ export function setupRouter(router: Router, self?: any) {
 
     const { title, summary, author, tags, thumbnail, content } = req.body;
     const id = crypto.randomUUID();
-    let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter(t => t.length > 0) : []);
+    let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter((t : any) => t.length > 0) : []);
 
     await addNewsPost({
       id,
