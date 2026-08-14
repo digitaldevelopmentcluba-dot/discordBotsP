@@ -41,4 +41,4 @@ npm 9.2.0
 ```
 
 # License
-This repository is under *INSERT LICENSE HERE*.
+This repository is under the [Apache 2.0 License](https://github.com/digitaldevelopmentcluba-dot/discordBotsP/tree/main?tab=License-1-ov-file).

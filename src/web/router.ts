@@ -29,6 +29,7 @@ export function setupRouter(router: Router, self: shardManager) {
   router.get(`/`, (req, res) => {
     res.render(`index`, {
       title: `Home`,
+      summary: `Welcome to the Digital Development Club!`,
       elapsed: (new Date() as any) - (start as any),
     });
   });
@@ -36,6 +37,7 @@ export function setupRouter(router: Router, self: shardManager) {
   router.get(`/about`, (req, res) => {
     res.render(`about`, {
       title: `About`,
+      summary: `Want to know what the Digital Development Club is about? This is the page to get that information!`,
     });
   });
 
@@ -64,6 +66,7 @@ export function setupRouter(router: Router, self: shardManager) {
 
     res.render(`status`, {
       title: `Bot Status`,
+      summary: `A super-secret page for retrieving Discord bot status information.`,
       shards: shardData,
       shardCount: shardData.length,
       totalGuilds: shardData.reduce((a, b) => a + (typeof b.guilds === `number` ? b.guilds : 0), 0)
@@ -82,6 +85,7 @@ export function setupRouter(router: Router, self: shardManager) {
     const posts = await getAllNewsPosts();
     res.render(`news`, {
       title: `News`,
+      summary: `This page consists of the many news articles that the Digital Development Club has published!`,
       posts
     });
   });
@@ -99,6 +103,7 @@ export function setupRouter(router: Router, self: shardManager) {
 
     res.render(`post`, {
       title: post.title,
+      summary: post.content ?? `No content was provided.`,
       post
     });
   });
@@ -139,7 +144,8 @@ export function setupRouter(router: Router, self: shardManager) {
 
   router.use((req, res, next) => {
     res.render(`invalid`, {
-      title: `Invalid Page`
+      title: `Invalid Page`,
+      summary: `This is an invalid page! It does not exist within the Digital Development Club.`
     })
     next();
   });
