@@ -1,6 +1,7 @@
 const openBtn = document.getElementById("openCreateMenu");
 const menu = document.getElementById("createMenu");
 const overlay = document.getElementById("createMenuOverlay");
+const closeBtn = document.getElementById("closeCreateMenu");
 
 openBtn.addEventListener("click", () => {
     menu.classList.add("open");
@@ -8,6 +9,11 @@ openBtn.addEventListener("click", () => {
 });
 
 overlay.addEventListener("click", () => {
+    menu.classList.remove("open");
+    overlay.classList.remove("visible");
+});
+
+closeBtn.addEventListener("click", () => {
     menu.classList.remove("open");
     overlay.classList.remove("visible");
 });
