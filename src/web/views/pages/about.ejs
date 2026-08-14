@@ -2,14 +2,7 @@
 
 <div class="about-section">
     <h2>About the Digital Development Club!</h2>
-
-    <pre>
-The Digital Development Club is a self-directed Chattanooga State Community College club where we help you achieve your goals related to digital development. Whether you're looking to learn, create, or collaborate, we provide guidance, resources, and support to help you along the way.
-
-When it comes to projects, we don’t impose any control unless the project is hosted on the official club <a href="https://github.com/digitaldevelopmentcluba-dot">GitHub account</a>. If a project is on the GitHub, it becomes a shared club project, meaning all members can contribute, modify, and collaborate on it. These projects will also be open-source, allowing anyone to learn and build upon them.
-
-If you love coding, want to learn, or simply enjoy hanging out with like-minded individuals, you’re welcome to join us! To get started, just join our <a href="https://www.discord.gg/mRqCMxtjXW">Discord server</a>
-    </pre>
+    <pre id="about"></pre>
 </div>
 
 <div class="officers-section">
@@ -19,5 +12,10 @@ If you love coding, want to learn, or simply enjoy hanging out with like-minded 
 </div>
 
 <script src="scripts/officers.js"></script>
+<script>
+    const about = document.getElementById(`about`);
+    about.innerHTML = `The Digital Development Club is a self-directed Chattanooga State Community College club where we help you achieve your goals related to digital development. Whether you're looking to learn, create, or collaborate, we provide guidance, resources, and support to help you along the way.\n\nWhen it comes to projects, we don’t impose any control unless the project is hosted on the official club <a href="https://github.com/digitaldevelopmentcluba-dot">GitHub account</a>. If a project is on the GitHub, it becomes a shared club project, meaning all members can contribute, modify, and collaborate on it. These projects will also be open-source, allowing anyone to learn and build upon them.\n\nIf you love coding, want to learn, or simply enjoy hanging out with like-minded individuals, you’re welcome to join us! To get started, just join our <a href="https://www.discord.gg/mRqCMxtjXW">Discord server</a>`
+</script>
+
 
 <%- include("../partials/footer") %>

@@ -1,0 +1,105 @@
+.create-news-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    padding: 14px 22px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: none;
+
+    background: var(--text-color);
+    color: var(--bg-color);
+
+    cursor: pointer;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    z-index: 1500;
+}
+
+.create-news-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-3px);
+}
+
+
+.create-menu-overlay {
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1998;
+}
+
+.create-menu {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 450px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-left: 2px solid var(--text-color);
+    padding: 25px;
+    overflow-y: auto;
+    transition: right 0.35s ease;
+    z-index: 1999;
+}
+
+:root.light .create-menu {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.create-menu.open {
+    right: 0;
+}
+
+.create-menu-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.create-menu h2 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.create-form label {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.create-form input,
+.create-form textarea {
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--text-color);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+.submit-btn {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    background: var(--text-color);
+    color: var(--bg-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: opacity 0.25s ease;
+}
+
+.submit-btn:hover {
+    opacity: 0.8;
+}

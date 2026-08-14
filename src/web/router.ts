@@ -70,11 +70,11 @@ export function setupRouter(router: Router, self?: any) {
   });
 
   router.get(`/coc`, async (req, res) => {
-    res.redirect(`assets/CodeOfConduct.pdf`);
+    res.redirect(`assets/documents/coc.pdf`);
   });
 
   router.get(`/bylaws`, async (req, res) => {
-    res.redirect(`assets/ConstitutionAndBylaws.pdf`);
+    res.redirect(`assets/documents/cab.pdf`);
   });
 
   router.get(`/news`, async (req, res) => {
@@ -107,19 +107,19 @@ export function setupRouter(router: Router, self?: any) {
 
     if (!validation.valid) {
       return res.status(400).json({
-        error: "Invalid request body",
+        error: `Invalid request body`,
         details: validation.errors
       });
     }
 
     const { title, summary, tags, thumbnail, content } = req.body;
     const id = crypto.randomUUID();
-    let formattedTags = (req.body.tags ? req.body.tags.split(",").map((t : any) => t.trim()).filter((t : any) => t.length > 0) : []);
+    let formattedTags = (req.body.tags ? req.body.tags.split(`,`).map((t : any) => t.trim()).filter((t : any) => t.length > 0) : []);
     
     const user : any = req.user;
-    const approvedUsers = ["1222647770788397168"]
+    const approvedUsers = [`1222647770788397168`, `210179841817837569`, `1410689274344509541`]
 
-    if(!approvedUsers.includes(user.id.toString())) return res.send(`You are not authorized to use this endpoint!`)
+    if(!approvedUsers.includes(user.id.toString())) return res.redirect(`/news`);
 
     await addNewsPost({
       id,

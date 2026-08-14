@@ -3,18 +3,12 @@
 <header>
     <nav class="navbar">
         <div class="logo">
-            <img src="/assets/logo.png" alt="Logo Icon" class="logo-icon">
+            <img src="/assets/images/logo.png" alt="Logo Icon" class="logo-icon">
             Digital Development Club
         </div>
 
         <div class="nav-controls">
             <ul class="nav-links" id="navMenu">
-                <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="/about"><i class="fas fa-users"></i> About</a></li>
-                <li><a href="/news"><i class="fa-solid fa-newspaper"></i> News</a></li>
-                <li><a href="/coc"><i class="fa-solid fa-key"></i> Code of Conduct</a></li>
-                <li><a href="/bylaws"><i class="fa-solid fa-book"></i> Bylaws</a></li>
-
                 <li><% if (user) { %>
                         <a href="/logout" class="account-link">
                             <span>
@@ -42,5 +36,23 @@
         </div>
     </nav>
 </header>
+
+<script>
+    const pages = [
+        {location: `/`, name: `Home`, icon: `fas fa-home`},
+        {location: `/about`, name: `About`, icon: `fas fa-users`},
+        {location: `/news`, name: `News`, icon: `fa-solid fa-newspaper`},
+        {location: `/coc`, name: `Code of Conduct`, icon: `fa-solid fa-key`},
+        {location: `/bylaws`, name: `Bylaws`, icon: `fa-solid fa-book`},
+    ]
+
+    let navMenu = document.getElementById(`navMenu`);
+
+    for (let page of pages) {
+        let el = document.createElement(`li`)
+        el.innerHTML = `<a href="${page.location}"><i class="${page.icon}"></i> ${page.name}</a>`
+        navMenu.appendChild(el);
+    }
+</script>
 
 <script src="/scripts/navbar.js"></script>
