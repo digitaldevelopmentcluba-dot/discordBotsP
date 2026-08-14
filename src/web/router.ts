@@ -2,6 +2,7 @@ import { type Router } from "express";
 import crypto from "crypto";
 import { addNewsPost, getNewsPostById, getAllNewsPosts, validateNewsPost } from "#utils/core/news.js"
 import { isLoggedIn, getAvatarUrl } from "#utils/core/passport.js"
+import type shardManager from "#utils/core/shardManager.js"
 
 export function extractSummary(content : any) {
   if (!content || typeof content !== `string`) return ``;
@@ -17,7 +18,7 @@ export function extractSummary(content : any) {
   return text.substring(0, 160);
 }
 
-export function setupRouter(router: Router, self?: any) {
+export function setupRouter(router: Router, self: shardManager) {
   let start = new Date();
 
   router.use((req, res, next) => {
@@ -134,5 +135,12 @@ export function setupRouter(router: Router, self?: any) {
     });
 
     res.redirect(`/news/${id}`);
+  });
+
+  router.use((req, res, next) => {
+    res.render(`invalid`, {
+      title: `Invalid Page`
+    })
+    next();
   });
 }

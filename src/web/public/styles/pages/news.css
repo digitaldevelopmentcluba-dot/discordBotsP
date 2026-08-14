@@ -1,4 +1,4 @@
-@import url("./newsCreation.css");
+@import url("../elements/newsCreation.css");
 
 .news-list {
     display: flex;
